@@ -22,7 +22,7 @@ const Experience = () => {
             variants={fadeIn("up", "tween", 0.08 * idx, 0.45)}
             className="py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4 min-w-0">
               <div className="flex items-center gap-3 text-[13px] font-mono text-secondary tabular-nums">
                 <span className="text-[#915eff] font-semibold">
                   {item.index}
@@ -30,15 +30,15 @@ const Experience = () => {
                 <span aria-hidden="true">·</span>
                 <span>{item.timeframe}</span>
               </div>
-              <h3 className="font-display text-white text-[22px] font-semibold mt-2">
+              <h3 className="font-display text-white text-[20px] sm:text-[22px] font-semibold mt-2">
                 {item.title}
               </h3>
-              <p className="text-secondary text-[14px] mt-1.5">
+              <p className="text-secondary text-[13px] sm:text-[14px] mt-1.5 break-words">
                 {item.subtitle}
               </p>
             </div>
 
-            <ul className="lg:col-span-8 space-y-3">
+            <ul className="lg:col-span-8 min-w-0 space-y-3">
               {item.points.map((point) => (
                 <li
                   key={point}

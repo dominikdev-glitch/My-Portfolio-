@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { styles } from "../styles";
-import { BallCanvas } from "./canvas";
+import { TechOrbsRow } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { technologies, techCategories } from "../constants";
 import { textVariant } from "../utils/motion";
@@ -16,20 +15,34 @@ const filterOptions = [
 ];
 
 const Tech = () => {
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  const [isCompact, setIsCompact] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false
   );
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 768px)").matches
+      : false
+  );
+  const [touchInteractive, setTouchInteractive] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const compactQuery = window.matchMedia("(max-width: 1023px)");
+
+    const syncViewport = () => {
+      setIsMobile(mobileQuery.matches);
+      setIsCompact(compactQuery.matches);
+      if (!mobileQuery.matches) setTouchInteractive(false);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    syncViewport();
+    mobileQuery.addEventListener("change", syncViewport);
+    compactQuery.addEventListener("change", syncViewport);
+    return () => {
+      mobileQuery.removeEventListener("change", syncViewport);
+      compactQuery.removeEventListener("change", syncViewport);
+    };
   }, []);
 
   const filteredCategories =
@@ -37,15 +50,19 @@ const Tech = () => {
       ? techCategories
       : techCategories.filter((c) => c.category === selectedCategory);
 
+  const orbRows = isCompact
+    ? [technologies.slice(0, 4), technologies.slice(4, 8)]
+    : [technologies];
+
   return (
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Technical Architecture</p>
-        <div className="mt-1 flex flex-col md:flex-row md:items-end justify-between gap-5">
+        <div className="mt-1 flex flex-col lg:flex-row lg:items-end justify-between gap-5">
           <h2 className={styles.sectionHeadText}>Tech Stack</h2>
 
           {/* Interactive Category Filter Controls */}
-          <div className="w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+          <div className="w-full lg:w-auto overflow-x-auto pb-1 lg:pb-0">
             <div
               role="tablist"
               aria-label="Filter technologies by category"
@@ -60,7 +77,7 @@ const Tech = () => {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setSelectedCategory(option)}
-                    className={`min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap shrink-0 transition-colors duration-150 cursor-pointer ${
+                    className={`min-h-[40px] px-3 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap shrink-0 transition-colors duration-150 cursor-pointer ${
                       isActive
                         ? "bg-[#915eff] text-white"
                         : "text-secondary hover:text-white"
@@ -75,56 +92,49 @@ const Tech = () => {
         </div>
       </motion.div>
 
-      {/* Desktop: Interactive 3D Procedural Orbs; Mobile: Fast Tactile Emblem Grid */}
-      {isMobile ? (
-        <div className="mt-8 grid grid-cols-2 xs:grid-cols-4 gap-3">
-          {technologies.map((tech) => (
+      {/* Same Interactive 3D Procedural Orbs across Mobile, Tablet, and Desktop */}
+      <div className="mt-8 sm:mt-10 space-y-5 sm:space-y-6">
+        {orbRows.map((rowItems, rowIdx) => (
+          <div key={rowIdx}>
+            <TechOrbsRow
+              items={rowItems}
+              isMobile={isMobile}
+              touchInteractive={touchInteractive}
+            />
             <div
-              key={tech.name}
-              className="bg-surface border border-white/[0.08] rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center"
+              className={`grid ${
+                rowItems.length === 4 ? "grid-cols-4" : "grid-cols-8"
+              } gap-1 sm:gap-2 mt-1`}
             >
-              <span
-                className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-[#070913] text-white border"
-                style={{ borderColor: tech.color }}
-              >
-                {tech.badge}
-              </span>
-              <span className="text-[12px] font-medium text-secondary">
-                {tech.name}
-              </span>
+              {rowItems.map((tech) => (
+                <span
+                  key={tech.name}
+                  className="text-center text-[11px] sm:text-[12px] font-medium text-secondary truncate px-0.5"
+                >
+                  {tech.name}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
-      ) : (
-        <div className="mt-10 grid grid-cols-4 lg:grid-cols-8 gap-4">
-          {technologies.map((tech) => (
-            <div key={tech.name} className="flex flex-col items-center">
-              <div className="w-24 h-24 sm:w-28 sm:h-28">
-                <BallCanvas
-                  badge={tech.badge}
-                  color={tech.color}
-                  name={tech.name}
-                />
-              </div>
-              <span className="text-[12px] font-medium text-secondary mt-1">
-                {tech.name}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
 
-      {isMobile && (
-        <div className="mt-5 flex justify-start">
-          <button
-            type="button"
-            onClick={() => navigate("/all-technologies")}
-            className="min-h-[44px] px-4 py-2 rounded-lg bg-surface border border-white/[0.12] text-white text-[13px] font-medium hover:border-[#915eff] transition-colors cursor-pointer"
-          >
-            View Full Tech Index
-          </button>
-        </div>
-      )}
+        {isMobile && (
+          <div className="flex items-center justify-between gap-3 pt-1">
+            <p className="text-[12px] font-mono text-secondary/80">
+              {touchInteractive
+                ? "Drag any 3D orb to rotate"
+                : "3D Tech Stack · Tap to spin"}
+            </p>
+            <button
+              type="button"
+              onClick={() => setTouchInteractive((prev) => !prev)}
+              className="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-[#070913] border border-white/20 text-[12px] font-medium text-white hover:border-[#915eff] whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+            >
+              {touchInteractive ? "Done Rotating" : "Rotate 3D"}
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* Unboxed Architectural Tech Matrix */}
       <div className="mt-10 sm:mt-12 divide-y divide-white/[0.08] border-y border-white/[0.08]">

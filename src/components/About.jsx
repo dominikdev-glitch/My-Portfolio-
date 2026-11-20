@@ -57,11 +57,11 @@ const About = () => {
         className="mt-4 text-secondary text-[15px] sm:text-[17px] max-w-3xl leading-[1.7]"
       >
         I&apos;m Ibekwe Somtochukwu (dominikdev-glitch), a Backend &amp;
-        Blockchain Developer with 3+ years of experience based in Lagos, Nigeria
-        and open to remote opportunities. From solo-architecting the MERMAI
-        Layer-1 blockchain in C++20 to shipping multi-chain platforms across
-        Ethereum, BNB Smart Chain, Solana, and TRON, I focus on security, clean
-        architecture, and end-to-end delivery.
+        Blockchain Developer with 3+ years of experience working remotely
+        worldwide with US EST timezone overlap (UTC+1). From solo-architecting
+        the MERMAI Layer-1 blockchain in C++20 to shipping multi-chain platforms
+        across Ethereum, BNB Smart Chain, Solana, and TRON, I focus on security,
+        clean architecture, and end-to-end delivery.
       </motion.p>
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -4,8 +4,8 @@ export const profile = {
   handle: "dominikdev-glitch",
   role: "Backend & Blockchain Developer",
   experience: "3+ Years Experience",
-  location: "Lagos, Nigeria",
-  availability: "Open to Remote Opportunities",
+  location: "Remote Worldwide",
+  availability: "US EST Overlap (UTC+1)",
   email: "ibekwesomtochukwu11@gmail.com",
   github: "https://github.com/dominikdev-glitch",
   linkedin: "https://www.linkedin.com/in/dominikdev-glitch-06431a250",
@@ -188,11 +188,27 @@ export const projects = [
     source_code_link: "https://github.com/dominikdev-glitch/mermai-blockchain",
   },
   {
+    id: "dvra",
+    name: "DVRA",
+    category: "Multi-Chain Web3",
+    stack: ["Solidity", "ERC-20", "TRC-20", "Ethers.js", "Node.js"],
+    networks: "Ethereum · BSC · Solana · TRON",
+    description:
+      "Multi-chain blockchain asset platform enabling users to create, configure, and deploy cryptocurrency tokens across BNB Smart Chain, Ethereum, Solana, and TRON.",
+    architecture: [
+      "Designed multi-chain token creation, deployment, and transaction workflows across EVM and non-EVM ecosystems.",
+      "Developed Solidity smart contracts (ERC-20 / TRC-20) integrated with Ethers.js and network RPC endpoints.",
+      "Shipped full-stack Web3 platform live at downloaddvra.onrender.com with end-to-end backend and wallet signing flows.",
+    ],
+    source_code_link: "https://github.com/dominikdev-glitch/download-dvra",
+    live_link: "https://downloaddvra.onrender.com",
+  },
+  {
     id: "nikwake",
     name: "NikWake",
     category: "Backend & Automation",
     stack: ["TypeScript", "Node.js", "Vite", "Firebase Auth", "Firestore"],
-    networks: "Scheduled HTTP Bot · Render Ready",
+    networks: "Scheduled HTTP Bot · Live on Render",
     description:
       "Website wake and uptime scheduler bot that sends configurable HTTP GET probes (1m–1h cadences) to keep web services warm with latency and streak tracking.",
     architecture: [
@@ -201,6 +217,7 @@ export const projects = [
       "Protected dashboard powered by Firebase Authentication ID tokens and Firebase Admin verification.",
     ],
     source_code_link: "https://github.com/dominikdev-glitch/nikwake",
+    live_link: "https://nikbrothers.onrender.com/",
   },
   {
     id: "shrcode",

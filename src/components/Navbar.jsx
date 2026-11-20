@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { styles } from "../styles";
@@ -8,6 +8,20 @@ import { logo } from "../assets";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    if (!toggle) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setToggle(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [toggle]);
 
   return (
     <header
@@ -80,7 +94,7 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-72 bg-[#070913] border-l border-white/[0.08] shadow-2xl transition-transform duration-200 z-40 ${
+        className={`md:hidden fixed top-0 right-0 h-full w-[min(18.5rem,85vw)] bg-[#070913] border-l border-white/[0.08] shadow-2xl transition-transform duration-200 z-40 overflow-y-auto ${
           toggle ? "translate-x-0" : "translate-x-full"
         }`}
       >

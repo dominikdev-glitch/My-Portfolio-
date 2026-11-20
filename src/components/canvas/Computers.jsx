@@ -29,8 +29,8 @@ const Computers = ({ isMobile }) => {
       <Float speed={1.5} rotationIntensity={0.18} floatIntensity={0.9}>
         <primitive
           object={computer.scene}
-          scale={isMobile ? 0.56 : 0.72}
-          position={isMobile ? [0, -1.0, -0.7] : [0, -1.45, -1.0]}
+          scale={isMobile ? 0.48 : 0.72}
+          position={isMobile ? [0, -0.85, -0.55] : [0, -1.45, -1.0]}
           rotation={isMobile ? [0, -0.25, -0.04] : [-0.01, -0.35, -0.04]}
         />
       </Float>
@@ -122,7 +122,7 @@ const ComputersCanvas = () => {
         <button
           type="button"
           onClick={() => setTouchInteractive((prev) => !prev)}
-          className="absolute bottom-3 right-3 z-20 min-h-[36px] px-3 py-1.5 rounded-lg bg-[#070913]/90 border border-white/20 text-[12px] font-medium text-white hover:border-[#915eff] transition-colors cursor-pointer"
+          className="absolute bottom-3 right-3 z-20 min-h-[40px] px-3.5 py-1.5 rounded-lg bg-[#070913]/90 border border-white/20 text-[12px] font-medium text-white hover:border-[#915eff] transition-colors cursor-pointer"
         >
           {touchInteractive ? "Done Rotating" : "Rotate 3D"}
         </button>

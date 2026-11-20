@@ -17,7 +17,7 @@ const ProjectCard = ({ index, project, onSelect }) => {
         <button
           type="button"
           onClick={() => onSelect(project)}
-          className="w-full aspect-video overflow-hidden block cursor-pointer border-b border-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#915eff]"
+          className="w-full min-h-[196px] sm:aspect-video overflow-hidden block cursor-pointer border-b border-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#915eff]"
           aria-label={`Inspect ${project.name} architecture`}
         >
           <ProjectPreview projectId={project.id} />
@@ -54,7 +54,7 @@ const ProjectCard = ({ index, project, onSelect }) => {
           ))}
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <button
             type="button"
             onClick={() => onSelect(project)}
@@ -115,7 +115,7 @@ const ProjectModal = ({ project, onClose }) => {
         className="w-full max-w-3xl bg-surface border border-white/[0.12] rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative aspect-video w-full bg-[#0A0D16] border-b border-white/[0.08]">
+        <div className="relative min-h-[210px] sm:aspect-video w-full bg-[#0A0D16] border-b border-white/[0.08]">
           <ProjectPreview projectId={project.id} expanded />
           <button
             type="button"
@@ -224,12 +224,12 @@ const Works = () => {
         variants={fadeIn("", "", 0.1, 0.5)}
         className="mt-4 text-secondary text-[15px] sm:text-[17px] max-w-3xl leading-[1.7]"
       >
-        Selected public repositories from GitHub — spanning a custom Layer-1
-        blockchain in C++20, scheduled backend uptime automation, and full-stack
-        TypeScript sharing workflows.
+        Selected production systems and public GitHub repositories — spanning a
+        custom C++20 Layer-1 blockchain, multi-chain Web3 token deployment,
+        scheduled backend automation, and TypeScript sharing workflows.
       </motion.p>
 
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {projects.map((project, index) => (
           <ProjectCard
             key={project.id}
