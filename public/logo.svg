@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="hexGrad" x1="12" y1="8" x2="116" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#915eff" />
+      <stop offset="100%" stop-color="#00cea8" />
+    </linearGradient>
+  </defs>
+  <polygon
+    points="64,6 114,35 114,93 64,122 14,93 14,35"
+    fill="#090325"
+    stroke="url(#hexGrad)"
+    stroke-width="6"
+  />
+  <text
+    x="64"
+    y="78"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-family="Poppins, Inter, system-ui, sans-serif"
+    font-size="44"
+    font-weight="800"
+    letter-spacing="2"
+  >
+    IS
+  </text>
+</svg>
