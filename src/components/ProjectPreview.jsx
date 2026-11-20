@@ -44,9 +44,9 @@ const MermaiPreview = ({ expanded = false }) => (
       </div>
       {expanded && (
         <div className="flex items-baseline justify-between gap-3">
-          <span className="text-slate-500 shrink-0">rpc_layer</span>
+          <span className="text-slate-500 shrink-0">runtime</span>
           <span className="text-slate-200 truncate">
-            40+ JSON-RPC endpoints · Prometheus
+            40+ JSON-RPC · MermaiVM · MRM-20
           </span>
         </div>
       )}
@@ -61,7 +61,7 @@ const MermaiPreview = ({ expanded = false }) => (
         <span>79 files</span>
       </div>
       <span className="text-emerald-400 font-medium whitespace-nowrap shrink-0">
-        17/17 tests PASS
+        Integration Suite PASS
       </span>
     </div>
   </div>

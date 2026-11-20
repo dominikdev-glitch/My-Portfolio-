@@ -9,7 +9,7 @@ export const profile = {
   email: "ibekwesomtochukwu11@gmail.com",
   github: "https://github.com/dominikdev-glitch",
   linkedin: "https://www.linkedin.com/in/dominikdev-glitch-06431a250",
-  cvUrl: "/assets/aistudio/Ibekwe_Somtochukwu_CV_b0f3e782.pdf",
+  cvUrl: "/assets/aistudio/Ibekwe_Somtochukwu_CV__1__e495685f.pdf",
   cvFilename: "Ibekwe_Somtochukwu_CV.pdf",
 };
 
@@ -176,14 +176,14 @@ export const projects = [
     id: "mermai-blockchain",
     name: "MERMAI Blockchain Network",
     category: "Layer-1 Blockchain",
-    stack: ["C++20", "TW-PoS", "SQLite", "JSON-RPC", "NIST P-256"],
-    networks: "7,800+ LOC · 17/17 Tests Passing",
+    stack: ["C++20", "TW-PoS", "MermaiVM", "MRM-20", "JSON-RPC"],
+    networks: "7,800+ LOC · Full Integration Suite Passing",
     description:
-      "Production-ready Layer-1 blockchain solo-architected from scratch in C++20 with Time-Weighted Proof-of-Stake consensus, atomic state management, 40+ JSON-RPC endpoints, and hardware biometric auth.",
+      "Production-ready Layer-1 blockchain solo-architected from scratch in C++20 with Time-Weighted Proof-of-Stake consensus, atomic SQLite state, MermaiVM, MRM-20 token standard, and 40+ JSON-RPC endpoints.",
     architecture: [
-      "Engineered Time-Weighted Proof-of-Stake (TW-PoS) consensus with equivocation detection, automatic 50% slashing penalty, and 2/3+ checkpoint voting finality.",
-      "Built atomic SQLite state machine with UTXO + Account hybrid model (7,800+ lines C++20 across 79 source files), automatic rollback, and state snapshots for fast sync.",
-      "Implemented P2P networking, peer reputation scoring, rate limiting, eclipse attack defense, Prometheus observability, and NIST P-256 hardware biometric auth.",
+      "Engineered Time-Weighted Proof-of-Stake (TW-PoS) consensus with equivocation detection, automatic 50% slashing penalty, and 2/3+ checkpoint finality.",
+      "Built atomic SQLite state machine with UTXO + Account hybrid model (7,800+ lines C++20 across 79 source files), automatic rollback, and state snapshots.",
+      "Implemented P2P networking, peer reputation scoring, rate limiting, eclipse attack defense, 40+ JSON-RPC API endpoints, MermaiVM, and MRM-20 token standard.",
     ],
     source_code_link: "https://github.com/dominikdev-glitch/mermai-blockchain",
   },
